@@ -1,4 +1,5 @@
 // index.js
+const cors = require('cors');
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
@@ -11,6 +12,10 @@ const facturaRoutes = require('./routes/facturaRoutes');
 const histClinicoRoutes = require('./routes/historialClinicoRoutes');
 const inventarioRoutes = require('./routes/inventarioRoutes');
 const detFacturaRoutes = require('./routes/detalleFacturaRoutes');
+const rolRoutes = require('./routes/rolesRoutes');
+const usuarioRoutes = require('./routes/usuariosRoutes');
+const auditoriaRoutes = require('./routes/auditoriaRoutes');
+const servicioRoutes = require('./routes/servicioRoutes');
 
 // Cargar variables de entorno desde un archivo .env
 dotenv.config();
@@ -30,6 +35,7 @@ app.listen(PORT, () => {
 });
 
 // Rutas API
+app.use(cors());
 app.use('/api/duenios', duenioRoutes);
 app.use('/api/mascotas', mascotaRoutes);
 app.use('/api/veterinarios', veterinarioRoutes);
@@ -38,4 +44,9 @@ app.use('/api/facturas', facturaRoutes);
 app.use('/api/histClinicos', histClinicoRoutes);
 app.use('/api/inventarios', inventarioRoutes);
 app.use('/api/detFacturas', detFacturaRoutes);
+app.use('/api/roles', rolRoutes);
+app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/auditorias', auditoriaRoutes);
+app.use('/api/servicios', servicioRoutes);
+
   

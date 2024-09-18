@@ -14,10 +14,10 @@ exports.getAllDetFacturas = async (req, res) => {
 
 // Crear un nuevo detalles de factura
 exports.createDetFactura = async (req, res) => {
-  const { ID_Factura, ID_Producto, Cantidad, Precio } = req.body;
+  const { ID_Factura, ID_Producto, Cantidad, Precio, Tipo, ID_Servicio } = req.body;
   try {
-    await db.query('INSERT INTO Detalle_Factura (ID_Factura, ID_Producto, Cantidad, Precio) VALUES (?, ?, ?, ?)', 
-    [ID_Factura, ID_Producto, Cantidad, Precio]);
+    await db.query('INSERT INTO Detalle_Factura (ID_Factura, ID_Producto, Cantidad, Precio, Tipo, ID_Servicio) VALUES (?, ?, ?, ?, ?, ?)', 
+    [ID_Factura, ID_Producto, Cantidad, Precio, Tipo, ID_Servicio]);
     res.status(201).json({ message: 'Detalle Factura creado exitosamente' });
   } catch (error) {
     res.status(500).json({ error: 'Error al crear el Detalle Factura' });

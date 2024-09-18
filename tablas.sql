@@ -46,7 +46,7 @@ CREATE TABLE Factura (
     ID_Factura INT AUTO_INCREMENT PRIMARY KEY,
     Fecha DATETIME NOT NULL,
     Monto_Total DECIMAL(10, 2) NOT NULL,
-    Estado VARCHAR(50),
+    Estado VARCHAR(50), -- A = Activa, C = Cancelada
     ID_Cita INT,
     FOREIGN KEY (ID_Cita) REFERENCES Cita(ID_Cita) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -76,6 +76,7 @@ CREATE TABLE Detalle_Factura (
     ID_Producto INT,
     Cantidad INT NOT NULL,
     Precio DECIMAL(10, 2) NOT NULL,
+    Tipo CHAR(1), -- P = Producto, S = Servicio
     FOREIGN KEY (ID_Factura) REFERENCES Factura(ID_Factura) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (ID_Producto) REFERENCES Inventario(ID_Producto) ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -101,7 +102,18 @@ CREATE TABLE Auditoria (
     ID_Auditoria INT AUTO_INCREMENT PRIMARY KEY,
     Accion VARCHAR(255) NOT NULL,
     Fecha DATETIME NOT NULL,
-    ID_Usuario INT NOT NULL,
+    ID_Usuario INT,
     Descripcion VARCHAR(500),
     FOREIGN KEY (ID_Usuario) REFERENCES Usuarios(ID_Usuario) ON DELETE SET NULL ON UPDATE CASCADE
 );
+
+CREATE TABLE Servicio (
+    ID_Servicio INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Descripcion VARCHAR(255),
+    Precio DECIMAL(10, 2) NOT NULL
+);
+
+-- a detalle factura se le agrego TIPO CHAR(1) y ID_Servicio INT
+
+SELECT 1 + 1 AS resultado

@@ -12,7 +12,7 @@ exports.getAllRoles = async (req, res) => {
   }
 };
 
-// Crear un nuevo detalles de factura
+// Crear un nuevo Rol
 exports.createRol = async (req, res) => {
   const { Nombre_Rol } = req.body;
   try {
