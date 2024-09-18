@@ -6,6 +6,12 @@ const db = require('./config/db');
 const duenioRoutes = require('./routes/duenioRoutes');
 const mascotaRoutes = require('./routes/mascotaRoutes');
 const veterinarioRoutes = require('./routes/veterinarioRoutes');
+const citaRoutes = require('./routes/citaRoutes');
+const facturaRoutes = require('./routes/facturaRoutes');
+const histClinicoRoutes = require('./routes/historialClinicoRoutes');
+const inventarioRoutes = require('./routes/inventarioRoutes');
+const detFacturaRoutes = require('./routes/detalleFacturaRoutes');
+
 // Cargar variables de entorno desde un archivo .env
 dotenv.config();
 
@@ -27,4 +33,9 @@ app.listen(PORT, () => {
 app.use('/api/duenios', duenioRoutes);
 app.use('/api/mascotas', mascotaRoutes);
 app.use('/api/veterinarios', veterinarioRoutes);
+app.use('/api/citas', citaRoutes);
+app.use('/api/facturas', facturaRoutes);
+app.use('/api/histClinicos', histClinicoRoutes);
+app.use('/api/inventarios', inventarioRoutes);
+app.use('/api/detFacturas', detFacturaRoutes);
   
