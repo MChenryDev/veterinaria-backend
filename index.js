@@ -16,6 +16,7 @@ const rolRoutes = require('./routes/rolesRoutes');
 const usuarioRoutes = require('./routes/usuariosRoutes');
 const auditoriaRoutes = require('./routes/auditoriaRoutes');
 const servicioRoutes = require('./routes/servicioRoutes');
+const obtenerFacturasRoutes = require('./routes/obtenerFacturasRoutes');
 
 // Cargar variables de entorno desde un archivo .env
 dotenv.config();
@@ -48,5 +49,6 @@ app.use('/api/roles', rolRoutes);
 app.use('/api/usuarios', usuarioRoutes);
 app.use('/api/auditorias', auditoriaRoutes);
 app.use('/api/servicios', servicioRoutes);
+app.use('/api/obtenerFacturas', obtenerFacturasRoutes);
 
   
