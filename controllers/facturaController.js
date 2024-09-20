@@ -133,8 +133,8 @@ exports.updateFactura = async (req, res) => {
 
     // Actualizar la factura (encabezado)
     await db.query(
-      'UPDATE Factura SET Monto_Total = ?, Estado = ?, ID_Cita = ? WHERE ID_Factura = ?',
-      [Monto_Total, Estado, ID_Cita, id]
+      'UPDATE Factura SET Monto_Total = ?, Estado = ? WHERE ID_Factura = ?',
+      [Monto_Total, Estado, id]
     );
 
     // Obtener los detalles actuales en la base de datos
@@ -149,7 +149,8 @@ exports.updateFactura = async (req, res) => {
 
       // Buscar si el detalle existe en los detalles nuevos
       const detalleNuevo = detalles.find(detalle =>
-        (detalle.ID_Producto === ID_Producto || detalle.ID_Servicio === ID_Servicio)
+        (detalle.ID_Producto === ID_Producto && detalle.ID_Producto !== null) ||
+        (detalle.ID_Servicio === ID_Servicio && detalle.ID_Servicio !== null)
       );
 
       if (detalleNuevo) {
@@ -171,8 +172,10 @@ exports.updateFactura = async (req, res) => {
 
       // Si el detalle es nuevo (no tiene ID en la base de datos)
       const detalleExistente = detallesExistentes.find(d =>
-        (d.ID_Producto === ID_Producto || d.ID_Servicio === ID_Servicio)
+        (d.ID_Producto === ID_Producto && d.ID_Producto !== null) ||
+        (d.ID_Servicio === ID_Servicio && d.ID_Servicio !== null)
       );
+      
 
       if (!detalleExistente) {
         await db.query(

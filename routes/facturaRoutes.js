@@ -15,8 +15,4 @@ router.post('/', facturaController.createFactura);
 router.put('/:id', facturaController.updateFactura);
 router.delete('/:id', facturaController.deleteFactura);
 
-
-
-
-
 module.exports = router;
