@@ -1,9 +1,11 @@
 // index.js
-const cors = require('cors');
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const dotenv = require('dotenv');
 const db = require('./config/db');
+//const authRoutes = require('./routes/authRoutes');
+const usersRouter = require('./routes/users');
 const duenioRoutes = require('./routes/duenioRoutes');
 const mascotaRoutes = require('./routes/mascotaRoutes');
 const veterinarioRoutes = require('./routes/veterinarioRoutes');
@@ -22,6 +24,7 @@ const obtenerFacturasRoutes = require('./routes/obtenerFacturasRoutes');
 dotenv.config();
 
 // Middleware para parsear JSON
+app.use(cors());
 app.use(express.json());
 
 // Ruta de prueba
@@ -36,7 +39,9 @@ app.listen(PORT, () => {
 });
 
 // Rutas API
-app.use(cors());
+
+//app.use('/auth', authRoutes);
+app.use('/api/users', usersRouter);
 app.use('/api/duenios', duenioRoutes);
 app.use('/api/mascotas', mascotaRoutes);
 app.use('/api/veterinarios', veterinarioRoutes);
